@@ -8,15 +8,25 @@ API Course, Lesson 1 -->
    <link rel="stylesheet" type="text/css" href="main.css">
  </head>
  <body>
-   <button id="show-monuments">Show Monuments</button>
-   <button id="hide-monuments">Hide Monuments</button>
-   <div id="map"></div>
+ <div class="container">
+   <div class="options-box">
+     <h1> Find New York Monuments</h1>
+     <div>
+       <button id="show-monuments">Show Monuments</button>
+      <button id="hide-monuments">Hide Monuments</button>
+      <hr>
+      <span class="text"> Draw a shape to search within it for homes!</span>
+      <input id="toggle-drawing"  type="button" value="Drawing Tools">
+     </div>
+   </div>
+ </div>
+  <div id="map"></div>
 
 
    <script type="text/javascript" src="map.js"></script>
    <!--TODO: Insert your API Key in the below call to load the API.-->
    <script async defer
-     src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCIgZ-Q1sVOjdFaoB03feD5HatWJD9e-2I&callback=initMap">
+     src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyCIgZ-Q1sVOjdFaoB03feD5HatWJD9e-2I&v=3&callback=initMap">
    </script>
  </body>
 </html>
