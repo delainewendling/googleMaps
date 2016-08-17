@@ -88,6 +88,9 @@ for (i=0; i < monuments.length; i++){
     // Make sure the search is re-done if the poly is changed.
     polygon.getPath().addListener('set_at', searchWithinPolygon);
     polygon.getPath().addListener('insert_at', searchWithinPolygon);
+    console.log(polygon)
+    var area = google.maps.geometry.spherical.computeArea(polygon.getPath())
+    console.log("The area of the polygon is: "+Math.round(area) + " square meters")
   });
 }
 
