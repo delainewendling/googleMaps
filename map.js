@@ -71,6 +71,9 @@ for (i=0; i < monuments.length; i++){
   document.getElementById('toggle-drawing').addEventListener('click', function() {
         toggleDrawing(drawingManager);
   });
+  document.getElementById('zoom-to-area').addEventListener('click', function() {
+    zoomToArea();
+  });
   drawingManager.addListener('overlaycomplete', function(event) {
     // First, check if there is an existing polygon.
     // If there is, get rid of it and remove the markers
@@ -178,6 +181,32 @@ for (i=0; i < monuments.length; i++){
       }
     }
   }
+
+  function zoomToArea() {
+  // Initialize the geocoder.
+  var geocoder = new google.maps.Geocoder();
+  // Get the address or place that the user entered.
+  var address = document.getElementById('zoom-to-area-text').value;
+  // Make sure the address isn't blank.
+  if (address == '') {
+    window.alert('You must enter an area, or address.');
+  } else {
+    // Geocode the address/area entered to get the center. Then, center the map
+    // on it and zoom in
+    geocoder.geocode(
+      { address: address,
+        componentRestrictions: {locality: 'New York'}
+      }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          map.setZoom(15);
+        } else {
+          window.alert('We could not find that location - try entering a more' +
+              ' specific place.');
+        }
+      });
+  }
+}
 
   // function toggleBounce(marker){
   //   console.log("this", this)
